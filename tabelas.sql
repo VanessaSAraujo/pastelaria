@@ -61,3 +61,31 @@ CREATE TABLE produtos (
     FOREIGN KEY (tamanho_id) REFERENCES tamanhos(tamanho_id),
     FOREIGN KEY (categoria_id) REFERENCES categorias(categoria_id)
 );
+
+#Tabela itens pedidos
+
+CREATE TABLE  itens_pedidos(
+	item_id INT PRIMARY KEY,
+	pedido_id INT NOT NULL,
+	produto_id INT NOT NULL,
+	quantidade INT NOT NULL,
+	preco DECIMAL(10,2)
+);
+
+#Tabela recheios
+
+CREATE TABLE recheios (
+    recheio_id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL
+);
+
+
+# tabela pasteis recheios
+
+CREATE TABLE pasteis_recheios (
+    pastel_id INT,
+    recheio_id INT,
+    PRIMARY KEY (pastel_id, recheio_id),
+    FOREIGN KEY (pastel_id) REFERENCES produtos(produto_id),
+    FOREIGN KEY (recheio_id) REFERENCES recheios(recheio_id)
+);
