@@ -33,3 +33,31 @@ CREATE TABLE pedidos (
     forma_pagamento VARCHAR(50),
     FOREIGN KEY (cliente_id) REFERENCES clientes(cliente_id)
 );
+
+
+#Tabela categorias
+
+CREATE TABLE categorias (
+    categoria_id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL
+);
+
+#Tabela tamanhos
+
+CREATE TABLE tamanhos (
+    tamanho_id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL
+);
+
+#Tabela produtos
+
+CREATE TABLE produtos (
+    produto_id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    preco DECIMAL(10, 2) NOT NULL,
+    tipo VARCHAR(50) NOT NULL,
+    tamanho_id INT,
+    categoria_id INT,
+    FOREIGN KEY (tamanho_id) REFERENCES tamanhos(tamanho_id),
+    FOREIGN KEY (categoria_id) REFERENCES categorias(categoria_id)
+);
