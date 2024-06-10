@@ -1,4 +1,5 @@
 CREATE DATABASE pastelaria_do_beicola;
+#DROP DATABASE pastelaria_do_beicola;
 
 USE pastelaria_do_beicola;
 
@@ -34,7 +35,6 @@ CREATE TABLE pedidos (
     FOREIGN KEY (cliente_id) REFERENCES clientes(cliente_id)
 );
 
-
 #Tabela categorias
 
 CREATE TABLE categorias (
@@ -65,11 +65,13 @@ CREATE TABLE produtos (
 #Tabela itens pedidos
 
 CREATE TABLE  itens_pedidos(
-	item_id INT PRIMARY KEY,
+	item_id INT PRIMARY KEY AUTO_INCREMENT,
 	pedido_id INT NOT NULL,
 	produto_id INT NOT NULL,
 	quantidade INT NOT NULL,
-	preco DECIMAL(10,2)
+	preco DECIMAL(10,2),
+    FOREIGN KEY (pedido_id) REFERENCES pedidos(pedido_id),
+    FOREIGN KEY (produto_id) REFERENCES produtos(produto_id)
 );
 
 #Tabela recheios
